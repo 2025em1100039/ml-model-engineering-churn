@@ -1,0 +1,44 @@
+{
+  "dataset_rows_after_cleaning": 7032,
+  "train_rows": 4922,
+  "validation_rows": 1055,
+  "test_rows": 1055,
+  "churn_rate": 0.26578498293515357,
+  "threshold_selected_on_validation": 0.7056536681231852,
+  "baseline": {
+    "accuracy": 0.7345971563981043,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.5,
+    "pr_auc": 0.26540284360189575,
+    "confusion_matrix": [
+      [
+        775,
+        0
+      ],
+      [
+        280,
+        0
+      ]
+    ]
+  },
+  "logistic_regression": {
+    "accuracy": 0.7772511848341233,
+    "precision": 0.5818181818181818,
+    "recall": 0.5714285714285714,
+    "f1": 0.5765765765765766,
+    "roc_auc": 0.8220990783410138,
+    "pr_auc": 0.5794471565738196,
+    "confusion_matrix": [
+      [
+        660,
+        115
+      ],
+      [
+        120,
+        160
+      ]
+    ]
+  }
+}
