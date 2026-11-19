@@ -49,6 +49,7 @@ Run the training script and benchmark in your own environment. Insert the actual
 
 ```text
 .
+├── .gitignore
 ├── README.md
 ├── requirements.txt
 ├── data/
@@ -56,15 +57,18 @@ Run the training script and benchmark in your own environment. Insert the actual
 ├── artifacts/                # Serialized preprocessing + model pipeline
 ├── outputs/                  # Test predictions and evaluation metrics
 ├── src/
+│   ├── __init__.py
 │   ├── data_pipeline.py      # Data loading, cleaning and stratified split
 │   ├── train.py              # Baseline/model training and artifact export
 │   ├── evaluate.py           # Displays saved held-out evaluation metrics
 │   └── drift_monitor.py      # Numeric PSI calculation
 ├── serving/
+│   ├── __init__.py
 │   ├── app.py                # FastAPI /health and /predict endpoints
-│   ├── schemas.py            # Separate API request/response contract
-│   └── benchmark.py          # Model inference latency benchmark
+│   ├── schemas.py            # API request/response schema definitions
+│   └── benchmark.py           # Model inference latency benchmark
 └── tests/
+    ├── __init__.py
     ├── test_api.py           # Basic API contract checks
     └── test_drift_monitor.py # PSI checks
 ```
