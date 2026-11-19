@@ -45,3 +45,47 @@ Reports local single-row model inference p50/p95/p99 latency in milliseconds. Th
 
 ## Important
 Run the training script and benchmark in your own environment. Insert the actual values from `outputs/metrics.json` and benchmark output into the assignment report. Do not report example or assumed metrics as measured results.
+## Repository structure
+
+```text
+.
+├── README.md
+├── requirements.txt
+├── data/
+│   └── raw/                  # Downloaded IBM sample CSV
+├── artifacts/                # Serialized preprocessing + model pipeline
+├── outputs/                  # Test predictions and evaluation metrics
+├── src/
+│   ├── data_pipeline.py      # Data loading, cleaning and stratified split
+│   ├── train.py              # Baseline/model training and artifact export
+│   ├── evaluate.py           # Displays saved held-out evaluation metrics
+│   └── drift_monitor.py      # Numeric PSI calculation
+├── serving/
+│   ├── app.py                # FastAPI /health and /predict endpoints
+│   ├── schemas.py            # Separate API request/response contract
+│   └── benchmark.py          # Model inference latency benchmark
+└── tests/
+    ├── test_api.py           # Basic API contract checks
+    └── test_drift_monitor.py # PSI checks
+```
+
+`serving/app.py` and the existing training/data-pipeline code are retained
+unchanged. The separate `schemas.py` records the API contract for clarity;
+the running application continues to use its existing inline request model.
+
+## Evaluation and tests
+
+After training, display the saved test metrics:
+
+```bash
+python -m src.evaluate
+```
+
+Run the lightweight automated checks using Python's standard library:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+These tests complement the manual API robustness checks documented in the
+assignment report; they do not replace load testing or production monitoring.
